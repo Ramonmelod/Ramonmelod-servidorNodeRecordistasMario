@@ -28,10 +28,7 @@
     await db.registro(dadosRecordista)
     res.send('novo recordista inserido!')
     
-    console.log('novo recordista inserido!')
     
-
-
    })
 
    app.listen(porta,console.log('API disponível'))
