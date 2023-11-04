@@ -3,8 +3,7 @@
     const cors = require('cors')                  // pacote cors: utilzado para permissão de requisições cruzadas
     const bodyParser = require('body-parser')    // incluído para analise das requisições de post
     
-    const recordistas = await db.consulta()
-    console.log('obtendo recordistas')
+   
    
    const express = require('express')
    const app = express()
@@ -14,8 +13,9 @@
    app.use(bodyParser.json())                    // uso do body-Parser json
 
 
-   app.get('/',(req, res)=>{                    // rota para requisição da lista de recordistas
-   
+   app.get('/',async(req, res)=>{                    // rota para requisição da lista de recordistas
+       const recordistas = await db.consulta()
+       console.log('obtendo recordistas')
        res.send(recordistas)    
        
    })
