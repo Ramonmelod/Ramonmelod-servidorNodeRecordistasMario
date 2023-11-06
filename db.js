@@ -15,7 +15,7 @@ const conectar = async()=>{
 const consulta = async()=>{
   const con = await conectar()
   
-  const [linhas] = await con.query('SELECT * FROM listarecordistas ORDER BY i_pontuacao_listarecordistas DESC') // faz a leitura e ordena a lista de recordista
+  const [linhas] = await con.query('SELECT * FROM listarecordistas ORDER BY i_pontuacao_listarecordistas DESC limit 10') // faz a leitura e ordena a lista de recordista
   return linhas
 
 }
