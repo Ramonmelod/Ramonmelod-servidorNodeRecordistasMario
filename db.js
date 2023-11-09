@@ -25,7 +25,7 @@ const registro = async(novoRecordista)=>{
   const sqlCode = 'insert into listarecordistas (s_nome_listarecordistas,i_pontuacao_listarecordistas) values (?,?)'
   const valores = [novoRecordista.nome,novoRecordista.pontuacao]
   await con.query(sqlCode,valores)
-  console.log('novo recordista inserido')
+  console.log('recordista inserido')
 
 }
 module.exports = {consulta,registro}
