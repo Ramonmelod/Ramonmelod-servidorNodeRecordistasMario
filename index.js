@@ -24,8 +24,8 @@
    app.post('/post',async(req,res)=>{          // recebe a requisição de post do front-end
     
     let host = req.get('host')  //User-Agent
-    
-    if(host ===" www.ramonmelo.com.br"){
+
+    if(host ==="www.ramonmelo.com.br"){
 
         
     const {nome, pontuacao} = req.body
