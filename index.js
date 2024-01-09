@@ -14,6 +14,7 @@
 
 
    app.get('/',async(req, res)=>{                    // rota para requisição da lista de recordistas
+
        const recordistas = await db.consulta()
        console.log('obtendo recordistas')
        res.send(recordistas)    
@@ -21,23 +22,28 @@
    })
 
    app.post('/post',async(req,res)=>{          // recebe a requisição de post do front-end
+    
+    let host = req.get('host')  //User-Agent
+    
+    if(host ===" www.ramonmelo.com.br"){
 
-    const {nome, pontuacao } = req.body
+        
+    const {nome, pontuacao} = req.body
 
-    let nomeSanitizado = nome.replace(/[\W_]/g,'') // sanitização da variável nome para que caracteres especiais não seja lidos
+    let nomeSanitizado = nome.replace(/[^a-zA-Z0-9\sçáéíâêãõ]/g,'') // sanitização da variável nome para que caracteres especiais não sejam lidos
     
     const dadosRecordista = {nomeSanitizado, pontuacao }
-    console.log(dadosRecordista)
     console.log('inserindo novo recordista ...')
     await db.registro(dadosRecordista)
     
-    res.send('novo recordista inserido!')
+    res.status(200).send('novo recordista inserido!')
 
-    console.log(nomeSanitizado)
+    }else{
+        res.status(403).send("Não autorizado!")
+        console.log("Não autorizado!")
+    }
 
-    console.log(dadosRecordista)
-    
-    
+     
    })
 
    app.listen(porta,console.log('API disponível'))
