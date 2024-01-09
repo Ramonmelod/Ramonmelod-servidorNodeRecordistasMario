@@ -28,7 +28,7 @@
 
     console.log("post:" + host)
 
-    if(host ==="https://www.ramonmelo.com.br/"){
+    if(host ==="https://ramonmelo.com.br/"){
 
         
     const {nome, pontuacao} = req.body
