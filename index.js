@@ -23,12 +23,12 @@
 
    app.post('/post',async(req,res)=>{          // recebe a requisição de post do front-end
     
-    let host = req.get('referer')  //User-Agent
+    let host = req.get('referer')  //recebe a url que está fazendo a requisição de post
     
 
     console.log("post:" + host)
 
-    if(host ==="https://ramonmelo.com.br/"){
+    if(host ==="https://ramonmelo.com.br/"){                   // condição para que a operação de post seja realizada
 
         
     const {nome, pontuacao} = req.body
