@@ -23,7 +23,7 @@ const consulta = async()=>{
 const registro = async(novoRecordista)=>{
   const con = await conectar()
   const sqlCode = 'insert into listarecordistas (s_nome_listarecordistas,i_pontuacao_listarecordistas) values (?,?)'
-  const valores = [novoRecordista.nome,novoRecordista.pontuacao]
+  const valores = [novoRecordista.nomeSanitizado,novoRecordista.pontuacao]
   await con.query(sqlCode,valores)
   console.log('recordista inserido')
 

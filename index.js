@@ -23,10 +23,19 @@
    app.post('/post',async(req,res)=>{          // recebe a requisição de post do front-end
 
     const {nome, pontuacao } = req.body
-    const dadosRecordista = {nome, pontuacao }
+
+    let nomeSanitizado = nome.replace(/[\W_]/g,'') // sanitização da variável nome para que caracteres especiais não seja lidos
+    
+    const dadosRecordista = {nomeSanitizado, pontuacao }
+    console.log(dadosRecordista)
     console.log('inserindo novo recordista ...')
     await db.registro(dadosRecordista)
+    
     res.send('novo recordista inserido!')
+
+    console.log(nomeSanitizado)
+
+    console.log(dadosRecordista)
     
     
    })
