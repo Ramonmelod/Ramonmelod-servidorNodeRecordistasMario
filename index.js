@@ -17,18 +17,18 @@
 
        const recordistas = await db.consulta()
        console.log('obtendo recordistas')
-       res.send(recordistas)    
+       res.status(200).send(recordistas)    
        
    })
 
    app.post('/post',async(req,res)=>{          // recebe a requisição de post do front-end
     
-    let host = req.get('referer')  //recebe a url que está fazendo a requisição de post
+    let referer = req.get('referer')  //recebe a url que está fazendo a requisição de post
     
 
-    console.log("post:" + host)
+    console.log("post:" + referer)
 
-    if(host ==="https://ramonmelo.com.br/"){                   // condição para que a operação de post seja realizada
+    if(referer ==="https://ramonmelo.com.br/"){ // condição para que a operação de post seja realizada
 
         
     const {nome, pontuacao} = req.body
