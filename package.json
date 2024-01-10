@@ -1,38 +1,23 @@
 {
-
   "engines": {
-
     "node": "18.x"
-
   },
-
   "scripts": {
-
     "dev": "node index.js",
-    "test":"jest",
-    "test:watch":"jest --watchAll"
-
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "lint:check": "prettier --check .",
+    "lint:fix": "prettier --write ."
   },
-
   "dependencies": {
-
     "@planetscale/database": "^1.11.0",
-
     "cors": "^2.8.5",
-
     "dotenv": "^16.3.1",
-
     "express": "^4.18.2",
-
     "mysql2": "^3.6.2"
-
   },
-
   "devDependencies": {
-
-    "jest": "^29.7.0"
-
+    "jest": "^29.7.0",
+    "prettier": "^3.1.1"
   }
-
 }
-
