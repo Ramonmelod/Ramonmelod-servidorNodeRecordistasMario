@@ -12,9 +12,7 @@
 
   app.get("/", async (req, res) => {
     // rota para requisição da lista de recordistas
-
-    const recordistas = await db.consulta();
-    console.log("obtendo recordistas");
+    const recordistas = await db.consulta(); // aqui
     res.status(200).send(recordistas);
   });
 
@@ -25,7 +23,7 @@
 
     console.log("post:" + referer);
 
-    if (referer === "https://ramonmelo.com.br/") {
+    if (referer === "https://ramonmelo.com.br/" || process.env.NODE_ENV) {
       // condição para que a operação de post seja realizada
 
       const { nome, pontuacao } = req.body;
@@ -33,6 +31,7 @@
       let nomeSanitizado = nome.replace(/[^a-zA-Z0-9\sçáéíâêãõ]/g, ""); // sanitização da variável nome para que caracteres especiais não sejam lidos
 
       const dadosRecordista = { nomeSanitizado, pontuacao };
+      console.log("index.js " + dadosRecordista.nome);
       console.log("inserindo novo recordista ...");
       await db.registro(dadosRecordista);
 
