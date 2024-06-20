@@ -5,7 +5,7 @@
 
   const express = require("express");
   const app = express();
-  const porta = process.env.PORT || 8080;
+  const porta = process.env.PORT || 8080; // change this part for it to capture the environment, in order to use the right port
 
   app.use(cors()); //uso do cors
   app.use(bodyParser.json()); // uso do body-Parser json
