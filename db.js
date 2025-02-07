@@ -7,7 +7,7 @@ const pool = new Pool({
   user: process.env.PGUSER,
   database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
-  ssl: true,
+  ssl: false,
   //max: 80,
 });
 
