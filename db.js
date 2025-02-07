@@ -3,7 +3,7 @@ require("dotenv").config(); // habilita a leitura de arquivos .env
 
 const pool = new Pool({
   host: process.env.PGHOST,
-  //port: 5432,
+  port: 5432,
   user: process.env.PGUSER,
   database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
