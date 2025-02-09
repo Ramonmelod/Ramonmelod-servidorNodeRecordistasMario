@@ -12,37 +12,48 @@ const pool = new Pool({
   //max: 80,
 });
 
+const dbConnection = async () => {
+  try {
+    const client = await pool.connect();
+    console.log("aberta conexão com o banco");
+    return client;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const registro = async (novoRecordista) => {
   const sqlCode = {
     text: "insert into listarecordistas (s_nome_listarecordistas,i_pontuacao_listarecordistas) values($1,$2)",
     values: [novoRecordista.nomeSanitizado, novoRecordista.pontuacao],
   };
-  console.log("registro de recordista acessado");
-  const client = await pool.connect();
-  console.log("aberta conexão com o banco");
+  console.log("método registro de recordista acessado");
+
+  let client = await dbConnection();
   try {
     console.log(novoRecordista.nomeSanitizado);
-    const res = await client.query(sqlCode); //client.query
+    const res = await client.query(sqlCode);
     console.log("recordista inserido");
     return;
   } catch (error) {
-    console.log("Erro no try-catch em: " + error);
+    console.log(error);
   } finally {
-    if (client) {
+    if (dbConnection) {
       client.release();
     }
   }
 };
 
 const consulta = async () => {
-  console.log("consulta acessada");
-  const client = await pool.connect(); // verificar se let é válido
-  console.log("aberta conexão com o banco");
+  console.log("método consulta de recordista acessada");
 
+  let client = await dbConnection();
   try {
+    console.log("entrou no try do consulta de recordista");
+
     const result = await client.query(
       "SELECT * FROM listarecordistas ORDER BY i_pontuacao_listarecordistas DESC limit 10",
-    ); //client.query
+    );
     const linhas = [];
 
     for (let i = 0; i < result.rows.length; i++) {
@@ -50,7 +61,7 @@ const consulta = async () => {
     }
     return linhas;
   } catch (error) {
-    console.log("Erro no try-catch em: " + error);
+    console.log(error);
   } finally {
     if (client) {
       client.release();
