@@ -3,7 +3,7 @@
     "node": "18.x"
   },
   "scripts": {
-    "dev": "node index.js",
+    "dev": "nodemon index.js",
     "test": "jest",
     "services:up": "docker compose -f infra/compose.yaml up -d",
     "services:stop": "docker compose -f infra/compose.yaml stop",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
     "prettier": "^3.3.3"
   }
 }
