@@ -1,5 +1,6 @@
 const { Pool } = require("pg");
-require("dotenv").config(); // habilita a leitura de arquivos .env
+
+require("dotenv").config({ path: "./.env.development" }); // habilita a leitura de arquivos .env
 
 const pool = new Pool({
   host: process.env.PGHOST,
@@ -7,8 +8,7 @@ const pool = new Pool({
   user: process.env.PGUSER,
   database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
-  ssl: { rejectUnauthorized: false },
-  family: 4,
+  ssl: false,
   //max: 80,
 });
 
@@ -46,6 +46,7 @@ const registro = async (novoRecordista) => {
 
 const consulta = async () => {
   console.log("método consulta de recordista acessada");
+  console.log(process.env.NODE_ENV);
 
   let client = await dbConnection();
   try {
