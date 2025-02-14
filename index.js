@@ -23,23 +23,23 @@
 
     console.log("post:" + referer);
 
-    if (referer === "https://ramonmelo.com.br/" || process.env.NODE_ENV) {
-      // condição para que a operação de post seja realizada
-
-      const { nome, pontuacao } = req.body;
-
-      let nomeSanitizado = nome.replace(/[^a-zA-Z0-9\sçáéíâêãõ]/g, ""); // sanitização da variável nome para que caracteres especiais não sejam lidos
-
-      const dadosRecordista = { nomeSanitizado, pontuacao };
-      console.log("index.js " + dadosRecordista.nome);
-      console.log("inserindo novo recordista ...");
-      await db.registro(dadosRecordista);
-
-      res.status(200).send("novo recordista inserido!");
-    } else {
+    if (referer !== "https://ramonmelo.com.br/") {
       res.status(403).send("Não autorizado!");
       console.log("Não autorizado!");
+      return;
     }
+    const { nome, pontuacao } = req.body;
+
+    let nomeSanitizado = nome.replace(/[^a-zA-Z0-9\sçáéíâêãõ]/g, ""); // sanitização da variável nome para que caracteres especiais não sejam lidos
+
+    const dadosRecordista = { nomeSanitizado, pontuacao };
+    console.log("index.js " + dadosRecordista.nome);
+    console.log("inserindo novo recordista ...");
+    await db.registro(dadosRecordista);
+
+    res
+      .status(200)
+      .send(`Recordista ${dadosRecordista.nomeSanitizado} inserido!`);
   });
 
   app.listen(porta, console.log("API disponível"));
