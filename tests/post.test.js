@@ -9,7 +9,7 @@ test("teste de post das linhas do banco de dados", async () => {
     body: JSON.stringify(body),
     headers: {
       "Content-Type": "application/json",
-      referer: "http://127.0.0.1:5500/",
+      referer: "https://ramonmelo.com.br/",
     }, //para que este teste funcione o referer deve ser igual ao referer do index.js
   });
 
