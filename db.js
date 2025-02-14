@@ -1,6 +1,6 @@
 const { Pool } = require("pg");
 
-require("dotenv").config({ path: "./.env.development" }); // habilita a leitura de arquivos .env
+require("dotenv").config({ path: "./.env.development" });
 
 const pool = new Pool({
   host: process.env.PGHOST,
@@ -22,16 +22,15 @@ const dbConnection = async () => {
   }
 };
 
-const registro = async (novoRecordista) => {
+const registro = async (nome, pontuacao) => {
   const sqlCode = {
     text: "insert into listarecordistas (s_nome_listarecordistas,i_pontuacao_listarecordistas) values($1,$2)",
-    values: [novoRecordista.nomeSanitizado, novoRecordista.pontuacao],
+    values: [nome, pontuacao],
   };
-  console.log("método registro de recordista acessado");
 
   let client = await dbConnection();
   try {
-    console.log(novoRecordista.nomeSanitizado);
+    console.log(nome);
     const res = await client.query(sqlCode);
     console.log("recordista inserido");
     return;
