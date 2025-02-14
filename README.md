@@ -1,22 +1,20 @@
-# servidorNodeRecordistasMario
+# Mario Server
 
 <div>
-<img src="https://user-images.githubusercontent.com/25181517/183859966-a3462d8d-1bc7-4880-b353-e2cbed900ed6.png" alt="logo express" width="200" height="auto">
-<img src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png" alt="logo Postgresql" width="200" height="auto">
-</div>
-<img src="https://user-images.githubusercontent.com/25181517/183568594-85e280a7-0d7e-4d1a-9028-c8c2209e073c.png" alt="logo node" width="300" height="auto">
+<img src="https://user-images.githubusercontent.com/25181517/183859966-a3462d8d-1bc7-4880-b353-e2cbed900ed6.png" alt="express logo" width="200" height="auto">
+<img src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png" alt="postgresql logo" width="200" height="auto">
 
-## tecnologias utilizadas:
+## Technologies used:
 
 - `Express`
-- `MySql`
+- `Postgres`
 - `Node`
 
-## Descrição:
+## Description:
 
-- Esta ApiRest em node-express consulta e posta em um banco de dados MySql com o objetivo de consultar e resgistrar os recordistas do jogo do mário implementado em [jogoMario](https://github.com/Ramonmelod/supermario/tree/main)
+- This Node-Express API queries and posts to a MySQL database with the purpose of querying and registering record holders for the Mario game implemented in [jogoMario](https://github.com/Ramonmelod/supermario/tree/main)
 
-## Autor
+## Author
 
 - Ramon Melo — Linkedin: [/in/ramonmelod](https://www.linkedin.com/in/ramonmelod/)
 
@@ -34,11 +32,19 @@
 }
 ```
 
-- Exemplo de requisição utilizando HTTPie: ##post
-  http POST http://localhost:8080/post Content-Type:application/json <<< '{"i_idrecordista_listarecordistas": 19,"s_nome_listarecordistas" : "Carlos","i_pontuacao_listarecordistas": 25}'
+- Example of a request using Curl:
+
+```sh
+curl -X POST http://localhost:8080/post -H "Content-Type: application/json" -H "Referer: https://ramonmelo.com.br/" -d '{"nome": "Fulano", "pontuacao": 42}'
+```
 
 ## GET
 
 **Requisição**
 
 `/`
+
+```
+curl -s http://localhost:8080/ | python3 -m json.tool
+
+```
