@@ -14,10 +14,6 @@
 
 - This Node-Express API queries and posts to a MySQL database with the purpose of querying and registering record holders for the Mario game implemented in [jogoMario](https://github.com/Ramonmelod/supermario/tree/main)
 
-## Author
-
-- Ramon Melo — Linkedin: [/in/ramonmelod](https://www.linkedin.com/in/ramonmelod/)
-
 ## Endpoints
 
 ### POST
@@ -48,3 +44,18 @@ curl -X POST http://localhost:8080/post -H "Content-Type: application/json" -H "
 curl -s http://localhost:8080/ | python3 -m json.tool
 
 ```
+
+## Direct acces to the database container
+
+- In ubuntu you can access the postgres database container using the comand:
+
+```sh
+  psql --host=localhost --username=postgres --port=5432
+
+```
+
+- After this command the database shell request the password, which is:`local_password`
+
+## Author
+
+- Ramon Melo — Linkedin: [/in/ramonmelod](https://www.linkedin.com/in/ramonmelod/)
