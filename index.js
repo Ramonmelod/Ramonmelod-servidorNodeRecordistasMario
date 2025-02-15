@@ -1,4 +1,4 @@
-const db = require("./db.js");
+const db = require("./infra/database.js");
 const cors = require("cors"); // cors add to enable crossed requisitions
 const bodyParser = require("body-parser");
 
