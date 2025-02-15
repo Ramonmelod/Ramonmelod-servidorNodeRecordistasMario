@@ -15,23 +15,28 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/post", async (req, res) => {
-  let referer = req.get("referer"); //get the value of the referer of the request
+  try {
+    let referer = req.get("referer"); //get the value of the referer of the request
 
-  if (referer !== "https://ramonmelo.com.br/") {
-    res.status(403).send("Não autorizado!");
-    console.log("Não autorizado!");
-    return;
-  }
-  const { nome, pontuacao } = req.body;
-  console.log(`nome: ${nome}
+    if (referer !== "https://ramonmelo.com.br/") {
+      res.status(403).send("Não autorizado!");
+      console.log("Não autorizado!");
+      return;
+    }
+    const { nome, pontuacao } = req.body;
+    console.log(`nome: ${nome}
     pontuacao: ${pontuacao}`);
 
-  //let nomeSanitizado = nome.replace(/[^a-zA-Z0-9\sçáéíâêãõ]/g, ""); // sanitização da variável nome para que caracteres especiais não sejam lidos
+    //let nomeSanitizado = nome.replace(/[^a-zA-Z0-9\sçáéíâêãõ]/g, ""); // sanitização da variável nome para que caracteres especiais não sejam lidos
 
-  console.log(`adicionando ${nome} a lista de recordistas ...`);
-  await db.registro(nome, pontuacao);
+    console.log(`adicionando ${nome} a lista de recordistas ...`);
+    await db.registro(nome, pontuacao);
 
-  res.status(200).send(`Recordista ${nome} inserido!`);
+    res.status(200).send(`Recordista ${nome} inserido!`);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Erro no servidor, aguarde o problema ser resolvido!");
+  }
 });
 
 app.listen(porta, console.log("API disponível"));

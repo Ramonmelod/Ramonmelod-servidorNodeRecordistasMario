@@ -19,6 +19,7 @@ const dbConnection = async () => {
     return client;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
@@ -36,6 +37,7 @@ const registro = async (nome, pontuacao) => {
     return;
   } catch (error) {
     console.log(error);
+    throw error;
   } finally {
     if (dbConnection) {
       client.release();
@@ -62,6 +64,7 @@ const consulta = async () => {
     return linhas;
   } catch (error) {
     console.log(error);
+    throw error;
   } finally {
     if (client) {
       client.release();
