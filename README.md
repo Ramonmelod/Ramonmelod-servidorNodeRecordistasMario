@@ -18,7 +18,7 @@
 
 ### POST
 
-`/post`
+`/`
 
 ```json
 {
@@ -31,7 +31,7 @@
 - Example of a request using Curl:
 
 ```sh
-curl -X POST http://localhost:8080/post -H "Content-Type: application/json" -H "Referer: https://ramonmelo.com.br/" -d '{"nome": "Fulano", "pontuacao": 42}'
+curl -X POST http://localhost:8080/ -H "Content-Type: application/json" -H "Referer: https://ramonmelo.com.br/" -d '{"nome": "Fulano", "pontuacao": 42}'
 ```
 
 ## GET
