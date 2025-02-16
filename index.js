@@ -39,4 +39,9 @@ app.post("/", async (req, res) => {
   }
 });
 
+app.use((req, res) => {
+  // the middleware needs to be in the end to for the express search the requisitions in sequential order
+  res.status(404).json({ error: "Rota não encontrada" });
+});
+
 app.listen(porta, console.log("API disponível"));
