@@ -14,7 +14,7 @@ app.get("/", async (req, res) => {
   res.status(200).send(recordistas);
 });
 
-app.post("/post", async (req, res) => {
+app.post("/", async (req, res) => {
   try {
     let referer = req.get("referer"); //get the value of the referer of the request
 
